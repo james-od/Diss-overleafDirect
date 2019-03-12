@@ -316,8 +316,15 @@ Global volatility is similar to local volatility in that it is a measure of chan
 
 \subsection{Notes on Activation and Redundancy and visualising local dynamic measures}
 
-Local Activation is a local dynamic measure. It is calculated as the number of nodes in the selected time period that weren't ever active before that time period began.
+Pascal Cristofoli (pascal.cristofoli@ehess.fr) [...]. Experimented with the new additions. He suggested two new measures be added as he often found himself calculating them manually. These measures are local activation and local redundancy.
 
-Local Redundancy is a local dynamic measure. It is calculated as the number of nodes in the selected time period that have been active before that time period began.
+Local Activation is a local dynamic measure. It is calculated as the number of connections in the selected time period that weren't ever active before that time period began. In the network below\ref{} if the four time frames represent the full time period, the local activation value for the central node would be 3. If the selected time period was from the second to final time frames, inclusive, then the activation value for the central node would be 2.
+\begin{center}
+\includegraphics[trim={0 10cm 0 -1cm}, width=120mm]{./Figures/localActivation1.jpg}
+\end{center}
 
-Local activation, redundancy, volatility and centrality are all visualised in the same way. A drop down is used in the bookmarks bar [make sure this is shown on a labelled diagram at start] to select between them. The values are calculated for each node and the nodes radius is then calculated as the log of double the measures value, plus one. The values are doubled to give more visual separation which is hampered by the log scale. The "+1" is added so that nodes always have a radius to avoid breaking the user's mental map \cite{}.
+Local Redundancy is a local dynamic measure, highly complementary to local activation. It is calculated as the number of connections in the selected time period that have been active before that time period began. In the network figure above\ref{} if the four time frames represent the full time period, the local redundancy value for the central node would be 0, since there are no prior connections. If the selected time period was from the second to final time frames, inclusive, then the redundancy value for the central node would be 1.
+
+Local activation, redundancy, volatility and centrality are all visualised in the same way - as the radius of the node in the network visualisation. A drop down is used in the bookmarks bar [make sure this is shown on a labelled diagram at start] to select between them. The values are calculated for each node and the nodes radius is then calculated as the log of double the measures value, plus one. The values are doubled to give more visual separation which is hampered by the log scale. The "+1" is added so that nodes always have a radius to avoid breaking the user's mental map \cite{}.
+
+To aid the user further, a lighter grey circle of a fixed radius is shown behind each node. It's radius is calculated given the active local measure as that measures value over the full time frame. This allows users to see how a smaller window of time differs from the full time period. It was considered to use the maximum value that the selected measure ever takes for each given node, however this would require considerable initial computation as all pairs of start and end times would have to be considered for every single node.

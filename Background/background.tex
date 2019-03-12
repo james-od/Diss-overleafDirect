@@ -40,7 +40,7 @@ The Vistorian was primarily written in TypeScript and D3 \cite{d3site}. Since I'
 \end{center}
 
 More details are given in the visualization manual \cite{vismanual} but a summary of the key aspects is provided below.
-This project will focus on the ‘Node-link’ visualisation specifically. The node-link diagram is composed of nodes as points and edges as straight lines. The positions of nodes are kept the same for all time-frames, making it easier to visualise \cite{tsotaivg}. It's also simple and intuitive.
+This project will focus on the ‘Node-link’ visualisation specifically. The node-link diagram is composed of nodes as points and edges as straight lines. The positions of nodes are kept the same for all time-frames, making it easier to visualise \cite{tsotaivg} and preserving the user's mental map\cite{}. It's also simple and intuitive.
 %-Node-link history and development, why I'm using this one.\newline <-?
 At the top of the network page is a time-slider. Adjusting this time slider filters the links shown if they are not present in that window. A force-directed layout is used, meaning that nodes with many common neighbours are drawn close to each other and nodes with fewer connections are moved to the edges. Node size is used to indicate the node degree and line colour indicates a specific type of relation. Edges are defined as the direct links between nodes and only exist during at most one time-frame, whereas a nodepair is active if any edge is present between two nodes - meaning they can exist during multiple time-frames provided there is at least one edge linking the nodes. In The Vistorian the network is split into discrete time-frames where each time-frame represents some change happening in the network. 
 
