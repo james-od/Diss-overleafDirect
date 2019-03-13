@@ -152,12 +152,13 @@ NEW THOUGHTS TO ADD
 - 
 
 In my literature review I didn’t come across any examples where this specific measure, or anything similar, was used or investigated. I felt that there needed to be some measure or score which captured the level of connection fluctuation such that a node whose connections tended to stay mostly within a fixed set of other nodes would score low but a node whose edges tended to be short lived and with unfamiliar nodes would score high. This was a highly experimental process as there are a number of ways this could be achieved.
-Volatility is a local measure and is calculated with respect to a set start time and end time. Initially it was calculated as the population standard deviation of the number of a node’s connections throughout that time period, effectively the variance in the number of connections.
+Volatility is a local measure, calculate for a node and with respect to a set start time and end time. Initially it was calculated as the population standard deviation of the number of a node’s connections throughout that time period, effectively the variance in the number of connections.
 
 \begin{center}
 $N = total\ number\ of\ time\ frames$
 $\overline{x} = average\ number\ of\ connections\ from\ given\ node $
 $x_i = number\ of\ connections\ at\ time\ i$
+
 $local\ volatility\ = \sqrt{\frac{1}{N} \sum_{i=1}^N (x_i - \overline{x})^2}$
 \end{center}
 
@@ -195,7 +196,7 @@ However the problem with this approach is that it maintains no ‘memory’ of w
 
 The local volatility will still be 0 despite the edge changing since only the number of edges is taken into account.
 
-To fix this we must have some way to track specific edges, rather than simply their quantity. A solution is to give edges unique ids and store a binary value tracking which edges are present at each time frame and then sum the standard deviations of these. Example below, again calculated for the central node.
+To fix this we must have some way to track individual edges, rather than solely the quantity. A solution is to give edges unique ids and store a binary value tracking which edges are present at each time frame and then sum the standard deviations of these. Example below, again calculated for the central node.
 
 \begin{center}
 \includegraphics[trim={0 10cm 0 -1cm}, width=120mm]{./Figures/volatility4.jpg}
@@ -223,16 +224,16 @@ This approach too has an initially subtle problem however. Consider the figures 
 The volatility for the central node of the first network here would be calculated as follows.
 
 \begin{center}
-$N = 4$
+$N = 2$
 
 $Mapping = \{1:[1, 1, 1, 0], 2:[0, 0, 0, 1]\}$
 
-$local\ volatility = \frac{std([1,1,1,0]) + std([0,0,0,1])}{4}$
+$local\ volatility = \frac{std([1,1,1,0]) + std([0,0,0,1])}{2}$
 
 $local\ volatility = 0.43$
 \end{center}
 
-However upon calculating the volatility for the central node of the second network we find that it is equal. This is a problem because on observing the networks it can be seen that in network 1 there is a relatively stable edge, 1, for three of four time steps. Network 2 however has no edge lasting more than one time frame. This result does not align with the given specification of volatility.
+However upon calculating the volatility for the central node of the second network we find that it is equal. This is a problem because on observing the networks it can be seen that in network 1 there is a relatively stable edge, 1, for three of four time steps. Network 2 however has no edge lasting more than one time frame. This result does not align with the given specification of volatility, the second network should have a lower value than the first.
 
 \begin{center}
 $N = 4$
@@ -244,7 +245,7 @@ $local\ volatility = \frac{std([1,0,0,0]) + std([0,1,0,0]) + std([0,0,1,0]) + st
 $local\ volatility = 0.43$
 \end{center}
 
-The problem is caused by the averaging and the fact that the order of items does not affect standard deviation. My solution to this problem was to outright remove the averaging, and simply sum the terms. Since this could quickly lead to some very high values a log-scale is used for the visualisation. More details are provided on this in the visualisation method section\link{}.  
+The problem is caused by the averaging and the fact that the order of items does not affect standard deviation. My solution to this problem was to outright remove the averaging, and simply sum the terms. Since this could quickly lead to some very high values a log-scale is used for the visualisation. More details are provided on this in the visualisation method section\link{BLANK}.  
 
 With this fix the local volatility for the central node of the first network is 1.73 and 0.86 for the second network. 
 
@@ -256,7 +257,7 @@ Since responsiveness is key, some space complexity is sacrificed. A large data s
 I considered further optimising by only storing positive presence values and extrapolating the negatives as needed for the standard deviation calculations, however this additional calculation would reduce responsiveness which is already somewhat limited in the browser.
 
 \subsubsection{Vistorian Implementation}
-Whilst this solution would work well in a general case it unfortunately works poorly in The Vistorian as edges only appear once. To fix this we instead use node-pairs. 
+Whilst this solution would work well in a general case it works poorly in The Vistorian as edges only appear once. To fix this we instead use node-pairs. 
 Local volatility in The Vistorian gives a sense of the variation of a node's social contacts in a given time period. This is useful in the Vistorian because it allows us to see if one contact was rapidly sending or receiving messages to or from new contacts, or if they maintained fairly constant communication with a select number. 
 
 \subsubsection{Visualisation Method}
@@ -269,13 +270,6 @@ Local volatility could have broad applications in other domains where dynamic ne
 Say a system administrator was conducting a post-mortem of an attack on a network using a dynamic network analysis tool to determine which nodes were potentially behaving maliciously. One measure useful in determining an anomaly in a network is the number of successfully established TCP connections in a time interval \cite{fnpfid}. A malicious port scan usually sends a relatively small number of packets to a large number of hosts on a network \cite{fnpfid}. If a similar volatility measure was implemented in this dynamic network analysis tool and TCP connections were considered to be edges it would be very easy for the system administrator to spot particularly volatile, or spiky, nodes.
 \newline\newline
 Whilst investigating different proteins in protein-protein interaction networks and their impact on the development and progression of hepatocellular carcinoma (HCC) after hepatitis C virus infection the protein core ESR1, which interacted with most of the nodes in the randomly selected sub-network, was shown to be associated with an increased HCC risk \cite{acaotdbnihih}. Using local volatility as a measure while performing this anaylsis would have immediately highlighted the ESR1 protein as highly volatile and worthy of further investigation.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%NOTE ON LOCAL MEASURE VISUALISATION.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Local Measure Hoverover}
-To save screen space and reduce visual complexity, the precise values of a node's local measures given the selected time period are only shown on hover over. For the purposes of this report, the local measures are degree centrality and local volatility. However the implementation is easily extensible, allowing for more local measures to be quickly visualised.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %GLOBAL VOLATILITY
@@ -323,8 +317,16 @@ Local Activation is a local dynamic measure. It is calculated as the number of c
 \includegraphics[trim={0 10cm 0 -1cm}, width=120mm]{./Figures/localActivation1.jpg}
 \end{center}
 
-Local Redundancy is a local dynamic measure, highly complementary to local activation. It is calculated as the number of connections in the selected time period that have been active before that time period began. In the network figure above\ref{} if the four time frames represent the full time period, the local redundancy value for the central node would be 0, since there are no prior connections. If the selected time period was from the second to final time frames, inclusive, then the redundancy value for the central node would be 1.
+Local Redundancy is also a local dynamic measure, highly complementary to local activation. It is calculated as the number of connections in the selected time period that have been active before that time period began. In the network figure above\ref{} if the four time frames represent the full time period, the local redundancy value for the central node would be 0, since there are no prior connections. If the selected time period was from the second to final time frames, inclusive, then the redundancy value for the central node would be 1.
 
-Local activation, redundancy, volatility and centrality are all visualised in the same way - as the radius of the node in the network visualisation. A drop down is used in the bookmarks bar [make sure this is shown on a labelled diagram at start] to select between them. The values are calculated for each node and the nodes radius is then calculated as the log of double the measures value, plus one. The values are doubled to give more visual separation which is hampered by the log scale. The "+1" is added so that nodes always have a radius to avoid breaking the user's mental map \cite{}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%LOCAL MEASURE VISUALISATION.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Local Measure Hoverover}
+To save screen space and reduce visual complexity, the precise values of a node's local measures given the selected time period are only shown on hover over. For the purposes of this report, the local measures are degree centrality and local volatility. However the implementation is easily extensible, allowing for more local measures to be quickly visualised.
+
+Local activation, redundancy, volatility and centrality are all visualised in the same way - as the radius of the node in the network visualisation. A drop down is used in the bookmarks bar [make sure this is shown on a labelled diagram at start] to select between them. The values are calculated for each node and the nodes radius is then calculated as the log of double the measures value, plus one. The values are doubled to give more visual separation which is hampered by the log scale. The "+1" is added so that nodes always have a radius to avoid breaking the user's mental map \cite{BLANK}.
 
 To aid the user further, a lighter grey circle of a fixed radius is shown behind each node. It's radius is calculated given the active local measure as that measures value over the full time frame. This allows users to see how a smaller window of time differs from the full time period. It was considered to use the maximum value that the selected measure ever takes for each given node, however this would require considerable initial computation as all pairs of start and end times would have to be considered for every single node.

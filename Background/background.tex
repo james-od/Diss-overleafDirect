@@ -7,25 +7,39 @@
 
 \section{Current Dynamic Network Visualisation Techniques}
 
-In 2014 an investigation was done into the state of the art of visualising the dynamic element or third dimension \cite{tsotaivg}. Whilst this report will focus on using measure visualisations as a dynamic network visualisation technique it can be useful to see how the temporal element was directly visualised at a network level.
+Whilst this report will focus on using measure visualisations as a dynamic network visualisation technique it can be useful to see how the temporal element can be directly visualised at a network level. Examples of this can be found in a 2014 investigation on the state of the art of visualising the dynamic element or third dimension \cite{tsotaivg}. %ew
 
 One such dynamic visualisation technique is using 'animations' or 'movies'. SoNIA \cite{sonia} for example is a node-link animation based dynamic network visualisation tool that aims "to handle network data and visualization in ways that explicitly deal with its time-based nature and aids the user in understanding what their data really mean" \cite{taasodnv}. SoNIA can be used to save the network animation as a quicktime movie. An interesting technique used in SoNIA is the interpolation of points between changes, to create smoother transitions that are more easily followed by the human eye. SoNIA has been successfully used for modelling interaction networks, disease transmission and football passing patterns demonstrating that animations are a feasible tool for visualising changes in network structure.
 
 A common method of visualising static networks is the use of an adjacency matrix. Matrix Cubes \cite{vdnwmc} applies this technique to dynamic networks. Matrix cubes take the adjacency matrix of each static slice of a dynamic network and stacks them next to each other in order - using time as the third dimension, creating a cube. 
 %Matrixes are more readable for larger and denser graphs with nodelink found to be worse than a matrix representation for static networks composed of over 20 nodes \cite{acotrogunlambr}.
 
-When using a series of static node-link diagrams there are two methods to visualise the changes - one after the other (time-multiplexed) or side by side (juxtaposed) \cite{vdnwmc}. 
-
-
-While The Vistorian's node-link diagram is timeline based the novel approach taken in this report is measure based and visualised alongside the existing timeline based approach. Since the local measures values are calculated based on the time window set in the timeline and the global measures use it directly as an axis, the measure based approach is tightly intertwined with the timeline approach. The measures themselves and their own accompanying visualisations are used to aid user's understanding of the networks changes - complementing the  timeline approach rather than replacing it.
+The contributions in this report extend The Vistorian's node-link diagram, which is another visualisation technique. When using a series of static node-link diagrams there are two methods to visualise the changes - one after the other (time-multiplexed) or side by side (juxtaposed) \cite{vdnwmc}. The Vistorian's node-link diagram uses a time-multiplexed method with a timeline to control which frames of time are shown. While The Vistorian's node-link diagram is timeline based the novel approach taken in this report is measure based and visualised alongside the existing timeline based approach. Since the local measures values are calculated based on the time window set in the timeline and the global measures use it directly as an axis, the measure based approach is tightly intertwined with the timeline approach. The measures themselves and their own accompanying visualisations are used to aid user's understanding of the networks changes - complementing the  timeline approach rather than replacing it.
 
 
 \subsection{Measures}
-A static measure, for example degree centrality, quantifies some aspect of a static network. They can be either local - based on a single node, or global - based on the network as a whole. Density is an example of a global static measure. 
+Table \ref{Tab:Tcr} below summarises the measures that have been implemented. For the purposes of this report measures are defined as being either static or dynamic, and either local or global. A static measure quantifies some aspect of a static network and only takes into account one time-frame when doing this, where a time-frame is the unit of network change. A dynamic measure on the other hand only makes sense in a dynamic context as it assumes more than one time frame - dynamic measures quantify an aspect of the network's change. A local measure is applied to each node, edge or attribute individually. In this report all local measures apply only to nodes. Global measures are applied to the network as a whole.
 
-Dynamic measures on the other hand fall into two categories. In the first category are measures which only make sense in a dynamic context and could not be applied to a strictly static network. In the second, static measures are applied and calculated at each time-frame, where a time-frame is the unit of change. %more?
-Dynamic measures can also be described as local or global.
-
+\begin{center}
+\begin{table}
+\captionof{table}{Measures Table\label{Tab:Tcr}}
+\begin{tabular}{ |c|c|c|c| } 
+\hline
+ & Static & Dynamic \\
+\hline
+\multirow{3}{4em}{Local} & Degree Centrality & Local Volatility \\ 
+& & Local Redundancy \\ 
+& & Local Activation \\ 
+\hline
+\multirow{5}{4em}{Global} & Number of Connected Components & Global Volatility \\
+ & Diameter & Global Activation \\
+ & Density & Global Redundancy  \\
+ & Number of Node Pairs &   \\
+ & Number of Node Nodes &   \\
+\hline
+\end{tabular}
+\end{table}
+\end{center}
 
 
 \section{Technologies}
@@ -40,7 +54,7 @@ The Vistorian was primarily written in TypeScript and D3 \cite{d3site}. Since I'
 \end{center}
 
 More details are given in the visualization manual \cite{vismanual} but a summary of the key aspects is provided below.
-This project will focus on the ‘Node-link’ visualisation specifically. The node-link diagram is composed of nodes as points and edges as straight lines. The positions of nodes are kept the same for all time-frames, making it easier to visualise \cite{tsotaivg} and preserving the user's mental map\cite{}. It's also simple and intuitive.
+%This project will focus on the ‘Node-link’ visualisation specifically. The node-link diagram is composed of nodes as points and edges as straight lines. The positions of nodes are kept the same for all time-frames, making it easier to visualise \cite{tsotaivg} and preserving the user's mental map\cite{}. It's also simple and intuitive.
 %-Node-link history and development, why I'm using this one.\newline <-?
 At the top of the network page is a time-slider. Adjusting this time slider filters the links shown if they are not present in that window. A force-directed layout is used, meaning that nodes with many common neighbours are drawn close to each other and nodes with fewer connections are moved to the edges. Node size is used to indicate the node degree and line colour indicates a specific type of relation. Edges are defined as the direct links between nodes and only exist during at most one time-frame, whereas a nodepair is active if any edge is present between two nodes - meaning they can exist during multiple time-frames provided there is at least one edge linking the nodes. In The Vistorian the network is split into discrete time-frames where each time-frame represents some change happening in the network. 
 
