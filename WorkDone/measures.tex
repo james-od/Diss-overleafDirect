@@ -37,19 +37,18 @@ Finally, graphs can be reordered for easy comparison using click and drag as the
 The measures that have been implemented are each detailed below. The methods of calculation, the reasons for selecting them, their applications in The Vistorian and potential further applications are provided.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%NUMBER OF LINKS
+%NUMBER OF Nodepairs
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Number of links}
+\subsection{Number of Nodepairs}
 %\subsubsection{Summary}
-Simply the total number of edges in the network at a given time - a global static measure quantified at each time-frame. It gives a quick idea of the degree of activity during a time frame.
+Simply the total number of active nodepairs in the network at a given time - a global static measure quantified at each time-frame. It gives a quick idea of the degree of activity during a time frame.
 
 %\subsubsection{Reasons for Selection}
-The number of edges is one of the most basic measures. However it aids understanding of the network considerably as it provides perhaps the simplest way of understanding the overall size of the network at a time-frame or how it varies during a period, keeping cognitive load low while still improving understanding considerably.
+The number of nodepairs is one of the most basic measures. However it aids understanding of the network considerably as it provides perhaps the simplest way of understanding the overall size of the network at a time-frame or how it varies during a period, keeping cognitive load low while still improving understanding considerably.
 
 %\subsubsection{Vistorian Implementation}
-In The Vistorian this measure is interpreted as the number of messages sent at each time-frame. 
-Understanding how the number of links changes is useful in the Vistorian because the number of messages sent in each given time frame can quickly be seen.
-%\subsubsection{Visualisation}
+In The Vistorian this measure is interpreted as the number of connections at each time-frame, so this measure shows how that number changes over time.
+%\subsubsection{Visualisation}                                                                                
 %\subsubsection{Further Applications}
 
 
@@ -58,13 +57,13 @@ Understanding how the number of links changes is useful in the Vistorian because
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Number of Active Nodes}
 %\subsubsection{Summary}
-Another global static measure. It is calculated as the total number of nodes with at least one edge in the network for each timeframe.
+Another global static measure. The number of active nodes is calculated as the total number of nodes with at least one edge in the network for each timeframe.
 
 %\subsubsection{Reasons for Selection}
 Like the number of edges, the number of active nodes is also a very basic measure. However it gives an easily interpretable sense of the number of actors at a given time. Knowing if activity is high because there are multiple actors or because those actors are each very active is important to be able to distinguish. As it is a simple measure it also keeps cognitive load low while still improving understanding considerably.
 
 %\subsubsection{Vistorian Implementation}
-In the Vistorian this gives an idea of the number of people involved at each time frame. 
+In the Vistorian this gives an idea of the number of people involved at each time frame, either sending or receiving messages. 
 
 %\subsubsection{Visualisation}
 %\subsubsection{Further Applications}
@@ -74,10 +73,11 @@ In the Vistorian this gives an idea of the number of people involved at each tim
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Diameter}
 %\subsubsection{Summary}
-The longest of all shortest paths in the network at a given time. Diameter gives a sense of the interconnectedness of a network. Diameter is applied as a global static measure.
+The longest of all shortest paths in the network at a given time. Diameter gives a sense of the interconnectedness of a network. A high diameter would mean the network is quite loose and linear, a low diameter implies nodes tend to be tightly connected with each other - however there could of course be a particularly long branch responsible for creating a high value. Diameter is applied as a global static measure.
 
 %\subsubsection{Reasons for Selection}
-Diameter is particularly important in social networks. The commonly known six-degrees of separation theory https://www.jstor.org/stable/pdf/2786545.pdf?acceptTC=true effectively states that if one were to make a social networks of all humans, the expected diameter would be 6. In a dynamic context... 
+Diameter was selected as a measure because no other measure gives a sense of network breadth. It works particularly well alongside density to paint a picture of how the shape of the network evolves over time.
+%Diameter is particularly important in social networks. The commonly known six-degrees of separation theory https://www.jstor.org/stable/pdf/2786545.pdf?acceptTC=true effectively states that if one were to make a social networks of all humans, the expected diameter would be 6. In a dynamic context... 
 
 %\subsubsection{Vistorian Implementation}
 In The Vistorian the diameter gives a sense of social distance or degrees of separation between individuals in a ‘conversation’. <may need defined> 
@@ -260,9 +260,6 @@ I considered further optimising by only storing positive presence values and ext
 Whilst this solution would work well in a general case it works poorly in The Vistorian as edges only appear once. To fix this we instead use node-pairs. 
 Local volatility in The Vistorian gives a sense of the variation of a node's social contacts in a given time period. This is useful in the Vistorian because it allows us to see if one contact was rapidly sending or receiving messages to or from new contacts, or if they maintained fairly constant communication with a select number. 
 
-\subsubsection{Visualisation Method}
-To visualise local volatility ‘spikes’ are used, where more spikes indicates higher local volatility. Other methods were considered, vibration matches with the mental image of volatility but would be too distracting to the eye. Dotted rings with larger diameter indicating higher local volatility were considered but had too much potential for confusing overlap. Colours were originally used but could be misconstrued as relating to the edge colours. 
-
 
 \subsubsection{Further Applications}
 Local volatility could have broad applications in other domains where dynamic networks are used. 
@@ -278,7 +275,7 @@ Whilst investigating different proteins in protein-protein interaction networks 
 \subsection{Global Volatility}
 
 %\subsubsection{Development}
-To obtain some external feedback on the progress I had made an informal feedback meetingwas held with with 4 active researchers on network analysis. These researchers were Dr Jim Lowe (James.Lowe@ed.ac.uk), Dr Miguel Garcia Sancho Sanchez (miguel.gsancho@ed.ac.uk), Mark Wong (Mark.Wong@glasgow.ac.uk) and Gil Viry (gil.viry@ed.ac.uk). I demonstrated usage of The Vistorian and the additions I had made for around 10 minutes, there was then around 15 minutes of discussion. In general there was a very positive reaction, which helped to validate the new additions. It was mentioned that a sense of overall volatility could be useful to complement the local volatility measure. This could be used to investigate if a node's local volatility was high simply because overall volatility was high or if it is worthy of further investigation. This became Global Volatility.
+To obtain some external feedback on the progress I had made an informal feedback meeting was held with with 4 active researchers on network analysis. These researchers were Dr Jim Lowe (James.Lowe@ed.ac.uk), Dr Miguel Garcia Sancho Sanchez (miguel.gsancho@ed.ac.uk), Mark Wong (Mark.Wong@glasgow.ac.uk) and Gil Viry (gil.viry@ed.ac.uk). I demonstrated usage of The Vistorian and the additions I had made for around 10 minutes, there was then around 15 minutes of discussion. In general there was a very positive reaction, which helped to validate the new additions. It was mentioned that a sense of overall volatility could be useful to complement the local volatility measure. This could be used to investigate if a node's local volatility was high simply because overall volatility was high or if it is worthy of further investigation. This became Global Volatility.
 
 Global volatility is similar to local volatility in that it is a measure of change. It is defined as the change in active nodepairs for each time-frame, starting from 0. If a nodepair wasn't active in the previous time-frame but is active in the next then global volatility will be increased by one. Similarly if a nodepair was active in the previous time-frame but wasn't active in the next then global volatility would also be increased by one as this is also a change. In figure X the values at each timestep would be [0, 2, 2].
 
@@ -296,10 +293,28 @@ Global volatility is similar to local volatility in that it is a measure of chan
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%GLOBAL "ACTIVATION"
+%GLOBAL ACTIVATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Global "Activation"}
+\subsection{Global Activation}
+Global activation is a global dynamic measure. It is defined at each frame as the cumulative count of the number of new nodes that have been added, meaning that it will begin at 0 in the first frame, and end as the total number of nodes at the last frame. Observing this measure gives a sense of the rate at which new nodes are added. 
+
+In The Vistorian, if global activation rapidly peaked and then only slowly climbed to the maximum but we also knew that activity was fairly constant this would imply that few new actors are added throughout the period and that most of the activity is between actors that have sent or received messages before.
+
+In figure X above global activation would be [1, 2, 3].
+
+%\subsubsection{Development}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%GLOBAL REDUNDANCY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Global Redundancy}
+Global redundancy is a global dynamic measure and is linked with global activation. It is defined as the number of nodes at each time frame that have been active in any previous time frame. Observing this measure gives a sense of the number of repeated nodes. A low redundancy implies that most nodes are only fairly inactive. A high redundancy implies that nodes are more active and reconnect often.
+
+In figure X above global redundancy would be [0, 0, 0].
+
 
 %\subsubsection{Development}
 
@@ -308,7 +323,7 @@ Global volatility is similar to local volatility in that it is a measure of chan
 %LOCAL ACTIVATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Notes on Activation and Redundancy and visualising local dynamic measures}
+\subsection{Local Activation}
 
 Pascal Cristofoli (pascal.cristofoli@ehess.fr) [...]. Experimented with the new additions. He suggested two new measures be added as he often found himself calculating them manually. These measures are local activation and local redundancy.
 
@@ -317,16 +332,35 @@ Local Activation is a local dynamic measure. It is calculated as the number of c
 \includegraphics[trim={0 10cm 0 -1cm}, width=120mm]{./Figures/localActivation1.jpg}
 \end{center}
 
+\subsubsection{Further Applications}
+Local activation could have broad applications in other domains where dynamic networks are used. 
+\newline\newline
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%LOCAL REDUNDANCY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Local Redundancy}
+
 Local Redundancy is also a local dynamic measure, highly complementary to local activation. It is calculated as the number of connections in the selected time period that have been active before that time period began. In the network figure above\ref{} if the four time frames represent the full time period, the local redundancy value for the central node would be 0, since there are no prior connections. If the selected time period was from the second to final time frames, inclusive, then the redundancy value for the central node would be 1.
 
+\subsubsection{Further Applications}
+Local activation could have broad applications in other domains where dynamic networks are used. 
+\newline\newline
+In 2002 a study was conducted using a network of business connections to investigate if the degree of redundancy in social networks influenced the success of business start-ups \cite{socRed}. Redundancy here is applied in a static sense, such that "In non‐redundant networks the entrepreneurs’ contacts do not know each other and rarely have the same information". If a dynamic network was used instead, and the local redundancy measure was applied then .... STATIC V DYNAMIC A BIT DIFFICULT HERE BUT I THINK IT COULD BE A GOOD ADDITION?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %LOCAL MEASURE VISUALISATION.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \section{Local Measure Hoverover}
 To save screen space and reduce visual complexity, the precise values of a node's local measures given the selected time period are only shown on hover over. For the purposes of this report, the local measures are degree centrality and local volatility. However the implementation is easily extensible, allowing for more local measures to be quickly visualised.
+
+Initially, local volatility was visualised using 'spikes', where more spikes indicated higher local volatility. Other methods were considered, vibration matches with the mental image of volatility but would be too distracting to the eye. Dotted rings with larger diameter indicating higher local volatility were considered but had too much potential for confusing overlap. Colours were originally used but could be misconstrued as relating to the edge colours. 
+However as more local measures were added the spikes made less sense. They were also somewhat difficult to count on smaller nodes.
 
 Local activation, redundancy, volatility and centrality are all visualised in the same way - as the radius of the node in the network visualisation. A drop down is used in the bookmarks bar [make sure this is shown on a labelled diagram at start] to select between them. The values are calculated for each node and the nodes radius is then calculated as the log of double the measures value, plus one. The values are doubled to give more visual separation which is hampered by the log scale. The "+1" is added so that nodes always have a radius to avoid breaking the user's mental map \cite{BLANK}.
 
 To aid the user further, a lighter grey circle of a fixed radius is shown behind each node. It's radius is calculated given the active local measure as that measures value over the full time frame. This allows users to see how a smaller window of time differs from the full time period. It was considered to use the maximum value that the selected measure ever takes for each given node, however this would require considerable initial computation as all pairs of start and end times would have to be considered for every single node.
+
+[pictures]
