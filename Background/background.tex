@@ -33,7 +33,7 @@ A common method of visualising static networks is the use of an adjacency matrix
 The contributions in this report extend The Vistorian's node-link diagram - another visualisation technique. When using a series of static node-link diagrams there are two methods to visualise the changes - one after the other (time-multiplexed) or side by side (juxtaposed) \cite{vdnwmc}. The Vistorian's node-link diagram uses a time-multiplexed method with a timeline to control which frames of time are shown. While The Vistorian's node-link diagram is timeline based the novel approach taken in this report is measure based and visualised alongside the existing timeline based approach. Since the local measures values are calculated based on the time window set in the timeline and the global measures use it directly as an axis, the measure based approach is tightly intertwined with the timeline approach. The measures themselves and their own accompanying visualisations are used to aid user's understanding of the networks changes - complementing the  timeline approach rather than replacing it.
 
 \subsection{Measures}
-Table \ref{Tab:Tcr} below summarises the measures that have been implemented. For the purposes of this report measures are defined as being either static or dynamic, and either local or global. A static measure quantifies some aspect of a static network and only takes into account one time-frame when doing this, where a time-frame is the unit of network change. A dynamic measure on the other hand only makes sense in a dynamic context as it assumes more than one time frame - dynamic measures quantify an aspect of the network's change. A local measure is applied to each node, edge or attribute individually. In this report all local measures apply only to nodes. Global measures are applied to the network as a whole.
+Table \ref{Tab:Tcr} below summarises the measures that have been implemented. For the purposes of this report measures are defined as being either static or dynamic, and either local or global. A static measure quantifies some aspect of a static network and only takes into account one time frame when doing this, where a time frame is the unit of network change. A dynamic measure on the other hand only makes sense in a dynamic context as it assumes more than one time frame - dynamic measures quantify an aspect of the network's change. A local measure is applied to each node, edge or attribute individually. In this report all local measures apply only to nodes. Global measures are applied to the network as a whole.
 
 \begin{center}
 \begin{table}
@@ -64,14 +64,18 @@ The Vistorian was primarily written in TypeScript and D3 \cite{d3site}. Since I'
 
 \subsection{The Vistorian}
 
-\begin{center}
-\includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/vistorianOriginal.png}
-\end{center}
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/vistorianOriginal.png}
+  \caption{The Vistorian in it's original state}
+  \label{fig:vistorianOriginal}
+  \end{center}
+\end{figure}
 
 More details are given in the visualization manual \cite{vismanual} but a summary of the key aspects is provided below.
-%This project will focus on the ‘Node-link’ visualisation specifically. The node-link diagram is composed of nodes as points and edges as straight lines. The positions of nodes are kept the same for all time-frames, making it easier to visualise \cite{tsotaivg} and preserving the user's mental map\cite{}. It's also simple and intuitive.
+%This project will focus on the ‘Node-link’ visualisation specifically. The node-link diagram is composed of nodes as points and edges as straight lines. The positions of nodes are kept the same for all time frames, making it easier to visualise \cite{tsotaivg} and preserving the user's mental map\cite{}. It's also simple and intuitive.
 %-Node-link history and development, why I'm using this one.\newline <-?
-At the top of the network page is a time-slider. Adjusting this time slider filters the links shown if they are not present in that window. A force-directed layout is used, meaning that nodes with many common neighbours are drawn close to each other and nodes with fewer connections are moved to the edges. Node size is used to indicate the node degree and line colour indicates a specific type of relation. Edges are defined as the direct links between nodes and only exist during at most one time-frame, whereas a nodepair is active if any edge is present between two nodes - meaning they can exist during multiple time-frames provided there is at least one edge linking the nodes. In The Vistorian the network is split into discrete time-frames where each time-frame represents some change happening in the network. 
+At the top of the network page is a time-slider. Adjusting this time slider filters the links shown if they are not present in that window. A force-directed layout is used, meaning that nodes with many common neighbours are drawn close to each other and nodes with fewer connections are moved to the edges. Node size is used to indicate the node degree and line colour indicates a specific type of relation. Edges are defined as the direct links between nodes and only exist during at most one time frame, whereas a nodepair is active if any edge is present between two nodes - meaning they can exist during multiple time frames provided there is at least one edge linking the nodes. In The Vistorian the network is split into discrete time frames where each time frame represents some change happening in the network. 
 
 
 

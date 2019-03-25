@@ -5,8 +5,8 @@
 
 \chapter{Usage Scenario}
 
-\section{Scenario 1 [Marie Boucher]\ref{}}
-The Marie Boucher network \ref{dufournaud2017analyse}...
+\section{Scenario 1 [Marie Boucher]}
+The Marie Boucher network \cite{dufournaud2017analyse}...
 Summarise Marie Boucher background - I don't have this yet]
 
 \begin{center}
@@ -86,8 +86,12 @@ Next, the local measures can be investigated. Applying local volatility to the w
 Applying local redundancy to the network and stepping through it, there are few nodes that particularly stand out as having high redundancy, as expected the central nodes tend to have higher values than the outer nodes but some of the tightly linked nodes have notable redundancies, showing that they are connected a few separate times in the full period.
 
 \begin{center}
+\begin{tabular}{cc}
+\label{marieBoucherLocalActivationPeriod1}
 \includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/marieBoucherLocalActivationPeriod1.png}
-\end{center}   
+\end{tabular}
+\captionof{figure}{Marie Boucher - Local Activation for a short period}
+\end{center} 
 Switching to activation and we can see many nodes score quite high as we step through the network. The central nodes in particular but also some of the outer nodes.
 
 \section{Scenario 2 Turin Network}
@@ -96,7 +100,15 @@ Switching to activation and we can see many nodes score quite high as we step th
 
 The Turin network is much more seperated than Marie Boucher and much more cluster/component based. This makes it an excellent network to analyse alongside Marie Boucher.
 
-We begin again by looking at the global measures. Global volatility has around five periodic large jumps all to similar height of ~55
+\begin{center}
+\begin{tabular}{cc}
+\label{edgeTypes}
+\includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/TurinLocalVolatilityFull.png}
+\end{tabular}
+\captionof{figure}{The Turin Network, Local Volatility Measure Enabled}
+\end{center}
+
+We begin again by looking at the global measures. Global volatility has around five periodic large jumps.
 \begin{center}
 \includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/TurinGlobalVolatility.png}
 \end{center}   
@@ -106,8 +118,7 @@ In between each of these jumps is reasonably high volatility, so together these 
 \begin{center}
 \includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/TurinConnectedComponents.png}
 \end{center}  
-Looking next at the number of connected components - if we observe the network itself and step through it then it is readily apparent that it is made of many small connected components which tend to become active for short periods. Interestingly, what this graph shows - combined with this observation about the network, is that for the majority of the time there is only one active connected component, with only four cases occurring with two active and one case occurring with three active.
-    
+Looking next at the number of connected components - if we observe the network itself and step through it then it is readily apparent that it is made of many small connected components which tend to become active for short periods. Interestingly, what this graph shows - combined with this observation about the network, is that for the majority of the time there is only one active connected component, with only four time frames occurring with two active and one time frame occurring with three active.
 
 \begin{center}
 \includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/TurinDiameter.png}
@@ -117,7 +128,7 @@ Diameter is equally interesting, there are only two time frames where the diamet
 \begin{center}
 \includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/TurinDensity.png}
 \end{center}    
-Adding density further consolidates these findings as we can see that for the majority of time frames the components have a density of 100\%. Combining this with what we've already discovered we now know that in most time frames we have a single connected component with every node in that component connected to every other node in that component.
+Adding density further consolidates these findings as we can see that for the majority of time frames the components have a density of 100\%. Combining this with what we've already discovered we now know that in most time frames we have a single connected component with every node in that component connected to every other node in that component. Two of the dips also align with the spikes in diameter.
 
 \begin{center}
 \includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/TurinNodePairs.png}
@@ -125,8 +136,7 @@ Adding density further consolidates these findings as we can see that for the ma
 \begin{center}
 \includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/TurinNodes.png}
 \end{center}    
-[NB -> go back and fix """Links""" section, now wrong]
-Due to the density and what we've observed previously, the number of nodepairs and nodes are naturally very tightly correlated. Comparing with the density graph we can see that the few blips in perfect correlation all match the fluctuations in density. Since we know this network tends to have one active fully connected component active in each time frame, we can now gain a sense of the sizes of each of these components. Comparing again with the connected components graph we can see that these large jumps tend to be linked with time frames where there is more than one connected component. Some of the blips in diameter and density also align with time frames with more than one connected component. The timeframes these blips occur in could therefore be worth extra investigation.
+Due to the density and what we've observed previously, the number of nodepairs and nodes are naturally very tightly correlated. Comparing with the density graph we can see that the few blips in perfect correlation all match the fluctuations in density. Since we know this network tends to have one active fully connected component active in each time frame, we can now gain a sense of the sizes of each of these components. Comparing again with the connected components graph we can see that these large jumps tend to be linked with time frames where there is more than one connected component. Some of the blips in diameter and density also align with time frames with more than one connected component. The time frames these blips occur in could therefore be worth extra investigation.
     
 \begin{center}
 \includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/TurinGlobalVolatilityAndNodes.png}
@@ -137,7 +147,7 @@ Comparing number of nodes with Global Volatility by dragging the number of nodes
 \begin{center}
 \includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/TurinGlobalActivation.png}
 \end{center}       
-Continuing down to Global Activation we can see that new nodepairs are added at a fairly constant pace. Looking next at Global Redundancy, the height peaks indicate that many of the nodepairs have been active before, we can use this alongside the network itself to easily find the components that appear more than once.
+Continuing down to Global Activation we can see that new nodepairs are added at a fairly constant pace. Looking next at Global Redundancy, the peaks indicate that many of the nodepairs have been active before, we can use this alongside the network itself to easily find the components that appear more than once.
     
 \begin{center}
 \includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/TurinGlobalRedundancy.png}
@@ -148,21 +158,45 @@ Finally with Global Redundancy, the values appear highly erratic. This measure w
 Looking more generally at all graphs we can gain some more insight. Looking at the spread of time frames by observing the vertical bars, we can identify periods of no change and periods of considerable change. 
     
 \begin{center}
-\includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/TurinLocalVolatilityFull.png}
 \end{center}
-Next, we can experiment with the local measures. First with volatility, stepping through the network with a minimal window we see that the connected components tend to all have low similar volatilities with no standout nodes. Observing the full network over the whole time period we see that there is a large cluster containing several highly volatile nodes. Stepping through the graph we see that this is because many of the connected components overlap in some way within this cluster of nodes. These nodes are therefore very worthy of further investigation as they are highly active and with many different nodes rather than a fixed number.
-\begin{center}
-\includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/TurinLocalCentralityFull.png}
-\end{center}
-Comparing this with the centrality measure applied to the whole graph is enlightening as the volatile nodes stand out much more.This is interesting in itself because it shows that there are no real standout nodes that are highly erratic relative to the others.
 
 \begin{center}
+\begin{tabular}{cc}
+\label{edgeTypes}
+\includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/TurinLocalVolatilityFull.png}
+\end{tabular}
+\captionof{figure}{Turin Local Volatility - Full time period}
+\end{center}
+Next, we can experiment with the local measures. First with volatility, stepping through the network with a minimal window we see that the connected components tend to all have low similar volatilities with no standout nodes. Observing the full network over the whole time period we see that there is a large cluster containing several highly volatile nodes. Stepping through the graph we see that this is because many of the connected components overlap in some way within this cluster of nodes. These nodes are therefore very worthy of further investigation as they are highly active and with many different nodes rather than a fixed number.
+
+
+\begin{center}
+\begin{tabular}{cc}
+\label{edgeTypes}
+\includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/TurinLocalCentralityFull.png}
+\end{tabular}
+\captionof{figure}{Turin Centrality - Full time period}
+\end{center}
+
+\begin{center}
+\end{center}
+Comparing these results from local volatility with the centrality measure - again applied to the whole graph - is interesting, because we can see that using local volatility makes the interesting nodes stand out much more. 
+\begin{center}
+\begin{tabular}{cc}
+\label{edgeTypes}
 \includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/TurinLocalRedundancy1.png}
+\end{tabular}
+\captionof{figure}{Turin Local Redundancy - short time period}
 \end{center}
 Switching to local redundancy and selecting a period towards the end of the network's timeline we can easily spot the components that have been active at some point before that period as they have a redundancy $> 0$.
 
+
 \begin{center}
+\begin{tabular}{cc}
+\label{edgeTypes}
 \includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/TurinLocalActivation.png}
+\end{tabular}
+\captionof{figure}{Turin Local Activation - same short time period}
 \end{center}
 This further complements our findings from the global redundancy measure. Switching directly to local activation from here and looking again at the components identified as having higher redundancy we can see how high the activation in the selected time period is relative to the total network activity by comparing with the grey outer circles. Since they aren't considerably larger for any node in these components we could infer that this component is likely only fully active one or two times before this period.
 
@@ -197,7 +231,7 @@ This further complements our findings from the global redundancy measure. Switch
 [Reference]
 Finally, to assess the power of the measure based approach, we could try looking solely at the global measures of a new network to see how much information we can gleam. 
 
-Looking generally at all graphs we can see there is fairly little activity in the first half and then a lot in the second. We can see that for most timeframes there are only two nodes involved - explaining the density and diameter - and steadily increasing global activation implying that many new nodes are connected to. What's very interesting however is that global redundancy for the second half tends to be one. Tying this together and the picture we get is either of a network primarily composed of one node connecting to many new nodes in the second period or many pairs becoming active where one of the nodes in the pair has been active before. Looking more closely at the values of global activation which appear to increase by one during each time frame in this period and we can rule out the second option.
+Looking generally at all graphs we can see there is fairly little activity in the first half and then a lot in the second. We can see that for most time frames there are only two nodes involved - explaining the density and diameter - and steadily increasing global activation implying that many new nodes are connected to. What's very interesting however is that global redundancy for the second half tends to be one. Tying this together and the picture we get is either of a network primarily composed of one node connecting to many new nodes in the second period or many pairs becoming active where one of the nodes in the pair has been active before. Looking more closely at the values of global activation which appear to increase by one during each time frame in this period and we can rule out the second option.
 \end{multicols}
 
 Looking at the actual network, these findings were accurate. 
@@ -213,7 +247,7 @@ Of course, the measures are meant to be complementary to the network and not to 
 
 \section{Potential further work} 
 Creating visualisations is a highly iterative and experimental process, so naturally many ideas have been produced for improvements that could be made. 
-One of the most immediately useful would be implementing automatic point of interest detection. Specific frames of the network where most measures changed noticably compared with previous values would be highlighted on the timeline.
+One of the most immediately useful would be implementing automatic point of interest detection. Specific frames of the network where most measures changed noticeably compared with previous values would be highlighted on the timeline.
 \newline
 
 Another improvement mentioned during the feedback meeting (and briefly considered before) was enabling graphs to be exported as a png to allow for easy insertion into academic papers. This would encourage adoption and improve quality of life for end users.

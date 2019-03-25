@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %2345678901234567890123456789012345678901234567890123456789012345678901234567890
 %        1         2         3         4         5         6         7         8
 % DOCUMENT CLASS
@@ -31,6 +31,7 @@
 \usepackage[acronym,toc]{glossaries}
 \usepackage{setspace}
 \usepackage{multicol}
+\usepackage[toc,page]{appendix}
 \setstretch{1.5}
 %\onehalfspacing
 % SPECIAL COMMANDS
@@ -109,4 +110,70 @@
 \addcontentsline{toc}{chapter}{References}    % add References to contents page
 %\addcontentsline{toc}{section}{References}
 \nocite{*}
+\begin{appendices}
+\chapter{Volatility Examples}
+\label{appendix:appendixA}
+\begin{center}
+\includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix1.png}
+$local\ volatility = std([1,0,0,0]) + std([0,0,0,1]) + std([0,1,0,0]) + std([0,0,1,0])$
+
+$local\ volatility(A) = 1.73$
+
+$local\ volatility(B) = 0.43$
+\end{center}
+\begin{center}
+\includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix2.png}
+$local\ volatility = std([1,1,1,0]) + std([0,0,0,1])$
+
+$local\ volatility(A) = 0.86$
+
+$local\ volatility(B) = 0.43$
+\end{center}
+\begin{center}
+0     1     2     3
+
+\includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix3.png}
+$local\ volatility = std([1,0,1,0]) + std([0,1,1,1]) + std([1,0,0,1]) + std([0,1,0,1])$
+
+$local\ volatility(A) = 2$
+
+$local\ volatility(B) = 0.5$
+\end{center}
+\begin{center}
+\includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix4.png}
+$local\ volatility = std([1,1,1,1])$
+
+$local\ volatility(A) = 0$
+
+$local\ volatility(B) = 0$
+\end{center}
+
+\chapter{Local Activation and Redundancy Examples}
+\begin{center}
+\includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix1.png}
+$local\ activation(A) =$
+
+$local\ redundancy(A) =$
+
+\end{center}
+\begin{center}
+\includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix2.png}
+$local\ activation(A) =$
+
+$local\ redundancy(A) =$
+\end{center}
+\begin{center}
+\includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix3.png}
+$local\ activation(A) =$
+
+$local\ redundancy(A) =$
+\end{center}
+\begin{center}
+\includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix4.png}
+$local\ activation(A) =$
+
+$local\ redundancy(A) =$
+\end{center}
+
+\end{appendices}
 \end{document}
