@@ -111,69 +111,85 @@
 %\addcontentsline{toc}{section}{References}
 \nocite{*}
 \begin{appendices}
-\chapter{Volatility Examples}
+\chapter{Local Volatility Examples}
+
+While the results are intuitive, the specifics of how local volatility is calculated are slightly complex, so some additional examples are provided in this appendix.
+
 \label{appendix:appendixA}
+In this network, a nodepair exists between the central node, A, and each of the four surrounding nodes for one frame each. The volatility values for nodes A and B are calculated. All nodes other than A will have the same value as B. We can observe that the local volatility of A is considerably higher than B, as would be expected.
 \begin{center}
 \includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix1.png}
-$local\ volatility = std([1,0,0,0]) + std([0,0,0,1]) + std([0,1,0,0]) + std([0,0,1,0])$
+$local\ volatility(A) = std([1,0,0,0]) + std([0,0,0,1]) + std([0,1,0,0]) + std([0,0,1,0])$
 
 $local\ volatility(A) = 1.73$
 
+$local\ volatility(B) = std([1,0,0,0])$
+
 $local\ volatility(B) = 0.43$
 \end{center}
+
+In this network, nodepair 1 is active between node A and node B for three time frames, in the fourth timeframe nodepair 2 is active instead. The volatility values for nodes A and B are calculated. We can observe that the local volatility of A is higher than B, as would be expected, but lower than the previous example. This again is intuitive because A is makes fewer connections than the previous example.
 \begin{center}
 \includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix2.png}
 $local\ volatility = std([1,1,1,0]) + std([0,0,0,1])$
 
 $local\ volatility(A) = 0.86$
 
+$local\ volatility(B) = std([1,1,1,0])$
+
 $local\ volatility(B) = 0.43$
 \end{center}
-\begin{center}
-0     1     2     3
 
+In this network node A always has two active nodepairs, these vary in each tiemframe. The volatility values for nodes A and B are calculated. We can observe that the local volatility of A is much higher than B, as would be expected, and even higher than the first example. This again is intuitive because A makes many more connections with all appearing twice. B is slightly higher because it's nodepair is active twice.
+\begin{center}
 \includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix3.png}
 $local\ volatility = std([1,0,1,0]) + std([0,1,1,1]) + std([1,0,0,1]) + std([0,1,0,1])$
 
 $local\ volatility(A) = 2$
 
+$local\ volatility(B) = std([1,0,1,0])$
+
 $local\ volatility(B) = 0.5$
 \end{center}
+
+In this network all edges are fixed for the full time period with no changes, so the volatilities for node A and B are both, as expected, 0.
 \begin{center}
 \includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix4.png}
-$local\ volatility = std([1,1,1,1])$
+$local\ volatility = std([1,1,1,1]) + std([1,1,1,1]) + std([1,1,1,1]) + std([1,1,1,1])$
 
 $local\ volatility(A) = 0$
+
+$local\ volatility = std([1,1,1,1])$
 
 $local\ volatility(B) = 0$
 \end{center}
 
-\chapter{Local Activation and Redundancy Examples}
-\begin{center}
-\includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix1.png}
-$local\ activation(A) =$
+%\chapter{Local Activation and Redundancy Examples}
+%\begin{center}
+%\includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix1.png}
+%$local\ activation(A) =$
 
-$local\ redundancy(A) =$
+%$local\ redundancy(A) =$
 
-\end{center}
-\begin{center}
-\includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix2.png}
-$local\ activation(A) =$
+%\end{center}
+%\begin{center}
+%\includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix2.png}
+%$local\ activation(A) =$
 
-$local\ redundancy(A) =$
-\end{center}
-\begin{center}
-\includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix3.png}
-$local\ activation(A) =$
+%$local\ redundancy(A) =$
+%\end{center}
+%\begin{center}
+%\includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix3.png}
+%$local\ activation(A) =$
 
-$local\ redundancy(A) =$
-\end{center}
-\begin{center}
-\includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix4.png}
-$local\ activation(A) =$
+%$local\ redundancy(A) =$
+%\end{center}
+%\begin{center}
+%\includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix4.png}
+%$local\ activation(A) =$
 
-$local\ redundancy(A) =$
-\end{center}
+%$local\ redundancy(A) =$
+%\end{center}
 
 \end{appendices}
 \end{document}

@@ -3,59 +3,9 @@
 %        1         2         3         4         5         6         7         8
 % THESIS CHAPTER
 
-\chapter{Work Undertaken}
+\chapter{Measures}
 
-% short summary of the chapter
-\section*{Measures}
-
-\section{Final User Interface}
-
-\begin{figure}[h!]
-  \begin{center}
-  \includegraphics[trim={0, 0, 0, 3.5cm}, clip, width=140mm]{./Figures/vistorianNewFull.png}
-  \caption{Full updated user interface}
-  \label{fig:vistorianNewFull}
-  \end{center}
-\end{figure}
-
-\subsection{The Databar}
-
-\begin{center}
-\includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/databar.png}
-\end{center}
-
-The Databar holds the visualisation graphs for global measures. I decided to place it along the top of the window because it would line up nicely with the pre-existing timeline which could then double as the x-axis label - saving valuable screen space.
-The databar is highly interactive. Each graph is initially collapsed and can then be expanded by clicking. As more measures were added I realised that it wouldn't be possible to both provide enough detail in every graph and also facilitate easy comparison without taking up most of the screen real estate. Collapsing and expanding the graphs solved this problem. The databar was designed to be readily extensible and only needs to be provided with a list of values the same length as the number of time frames. It then maps each value to the corresponding time frame to produce the co-ordinate values for the ridgeline. 
-
-\begin{center}
-\includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/margueriteGlobalVolatility.png}
-\end{center}
-A d3 scale is used to provide the y axis labels seen on the left of the expanded graph. Moving the mouse across the screen causes a cursor to track along the ridgeline of the graph. The y-label at that point is shown on the tracker. This was originally done when the graphs weren't expandable to remove the need for an axis and save space, however it was found to be useful for tightly clumped values and for data with some small step sizes.
-
-\begin{center}
-\includegraphics[trim={5cm, 0, 9cm, 2cm},clip, width=70mm]{./Figures/margueriteGlobalVolatility.png}
-\end{center}
-The vertical lines indicate a timestep/change in the graph. This was orignally simply intended to make it easier for the user to  compare graphs vertically, however an additional and powerful benefit is that it allows the user to  easily finding time periods of high or low activity. The vertical lines are thicker and of the same colour as the graph when inside it's area to emphasise the fact that these are the only points there is information for, and that the connecting ridge-line is interpolated between them.
-Finally, graphs can be reordered for easy comparison using click and drag as there is not enough screen space to see all graphs at once, even compressed.
-
-\subsection{Bookmarks Bar Additions}
-\begin{figure}
-  \begin{center}
-  \includegraphics[trim={0, 12cm, 20cm, 22cm},clip, width=140mm]{./Figures/bookmarksbar.png}
-  \caption{Bookmarks Bar Measures Extension}
-  \label{fig:bookmarksbar}
-  \end{center}
-\end{figure}
-
-The bookmarks bar has been extended with a checkbox to show or hide the databar and a dropdown to pick between local measures, shown in Figure \ref{fig:bookmarksbar}. It defaults to centrality.
-
-
-
-
-
-
-\section{Measures and Visualisations}
-The measures that have been implemented are each detailed below. The methods of calculation, the reasons for selecting them, their applications in The Vistorian and potential further applications are provided.
+This section details the measures that have been implemented. The methods of calculation, the reasons for selecting them, their applications in The Vistorian and potential further applications are provided. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %NUMBER OF Nodepairs
@@ -144,7 +94,7 @@ In the demonstration network, Figure \ref{fig:demonstrationNetwork}, this measur
 %NUMBER OF CONNECTED COMPONENTS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Number of connected components}
-\subsubsection{Summary}
+
 A connected component is a group of nodes connected by edges such that by traversing edges any node can be reached from any other node. This measure is simply the number of discrete connected components. It is a global static measure.
 
 %\subsubsection{Reasons for Selection}
@@ -153,7 +103,7 @@ The number of connected components was selected as a measure because it shows ho
 %\subsubsection{Vistorian Implementation}
 In The Vistorian, this measure can be interpreted as the number of distinct conversations happening during a given chunk of time. 
 
-In the demonstration network, Figure \ref{fig:demonstrationNetwork}, this measure would take the values [1, 1, 2]. 
+In the demonstration network, figure \ref{fig:demonstrationNetwork}, this measure would take the values [1, 1, 2]. 
 
 %\subsubsection{Visualisation}
 %\subsubsection{Further Applications}
@@ -180,7 +130,7 @@ Degree centrality was implemented concretely in the project to complement the pr
 
 \subsection{Local Volatility}
 
-\subsubsection{Development}
+\subsubsection*{Development}
 
 In my literature review I didn’t come across any examples where this specific measure, or anything similar, was used or investigated. I felt that there needed to be some measure or score which captured the level of connection fluctuation such that a node whose connections tended to stay mostly within a fixed set of other nodes would score low but a node whose edges tended to be short lived and with unfamiliar nodes would score high. This was a highly experimental process as there are a number of ways this could be achieved.
 Volatility is a local measure, calculate for a node and with respect to a set start time and end time. Initially it was calculated as the population standard deviation of the number of a node’s connections throughout that time period, effectively the variance in the number of connections.
@@ -248,10 +198,18 @@ $local\ volatility = 0.47$
 \end{center}
 
 This approach too has an initially subtle problem however. Consider the figures below.
-\begin{center}
-\includegraphics[trim={0 10cm 0 -1cm}, width=120mm]{./Figures/volatilityLastProblem1.jpg}
-\includegraphics[trim={0 10cm 0 -1cm}, width=120mm]{./Figures/volatilityLastProblem2.jpg}
-\end{center}
+
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[trim={0 15cm 0 -1cm}, width=120mm]{./Figures/volatilityLastProblem1.jpg}
+  \end{center}
+  \caption{Network 1}
+  \begin{center}
+  \includegraphics[trim={0 15cm 0 -1cm}, width=120mm]{./Figures/volatilityLastProblem2.jpg}
+  \end{center}
+  \caption{Network 2}
+\end{figure}
+
 The volatility for the central node of the first network here would be calculated as follows.
 
 \begin{center}
@@ -287,12 +245,12 @@ Several more examples were worked through to ensure that volatility behaved as a
 Since responsiveness is key, some space complexity is sacrificed. A large data structure is initialised on page load mapping nodes to nodepairs and nodepairs to their binary presence values at each time frame.
 I considered further optimising by only storing positive presence values and extrapolating the negatives as needed for the standard deviation calculations, however this additional calculation would reduce responsiveness which is already somewhat limited in the browser.
 
-\subsubsection{Vistorian Implementation}
+\subsubsection*{Vistorian Implementation}
 Whilst this solution would work well in a general case it works poorly in The Vistorian as edges only appear once. To fix this we instead use node-pairs. 
 Local volatility in The Vistorian gives a sense of the variation of a node's social contacts in a given time period. This is useful in the Vistorian because it allows us to see if one contact was rapidly sending or receiving messages to or from new contacts, or if they maintained fairly constant communication with a select number. 
 
 
-\subsubsection{Further Applications}
+\subsubsection*{Further Applications}
 Local volatility could have broad applications in other domains where dynamic networks are used. 
 \newline\newline
 Say a system administrator was conducting a post-mortem of an attack on a network using a dynamic network analysis tool to determine which nodes were potentially behaving maliciously. One measure useful in determining an anomaly in a network is the number of successfully established TCP connections in a time interval \cite{fnpfid}. A malicious port scan usually sends a relatively small number of packets to a large number of hosts on a network \cite{fnpfid}. If a similar volatility measure was implemented in this dynamic network analysis tool and TCP connections were considered to be edges it would be very easy for the system administrator to spot particularly volatile, or spiky, nodes.
@@ -333,7 +291,7 @@ In figure \ref{fig:demonstrationNetwork2} this measure's values at each time fra
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Global Activation}
-Global activation is a global dynamic measure. It is defined at each frame as the cumulative count of the number of new nodes that have been added, meaning that it will initialise as the number of nodepairs in the first frame, and end as the total number of nodes at the last frame. Observing this measure gives a sense of the rate at which new nodes are added. 
+Global activation and redundancy were added after implementing their local counterparts and realising that a complementary global measure would be useful. More details on the local counterparts are given in Section \ref{localActivationSection}. Global activation is a global dynamic measure. It is defined at each frame as the cumulative count of the number of new nodes that have been added, meaning that it will initialise as the number of nodepairs in the first frame, and end as the total number of nodes at the last frame. Observing this measure gives a sense of the rate at which new nodes are added. 
 
 In The Vistorian, if global activation rapidly peaked and then only slowly climbed to the maximum but we also knew that activity was fairly constant this would imply that few new actors are added throughout the period and that most of the activity is between actors that have sent or received messages before.
 
@@ -360,6 +318,7 @@ In figure \ref{fig:demonstrationNetwork2} this measure's values at each time fra
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Local Activation}
+\label{localActivationSection}
 
 Pascal Cristofoli (pascal.cristofoli@ehess.fr) [...]. Experimented with the new additions. He suggested two new measures be added as he often found himself calculating them manually. These measures are local activation and local redundancy.
 
@@ -367,7 +326,7 @@ Local Activation is a local dynamic measure. It is calculated as the number of c
 
 \begin{figure}[h!]
   \begin{center}
-  \includegraphics[trim={0 10cm 0 -1cm}, width=120mm]{./Figures/localActivation1.jpg}
+  \includegraphics[trim={0 15cm 0 -1cm}, width=120mm]{./Figures/localActivation1.jpg}
   \end{center}
   \caption{}{}
   \label{localActivation1}
@@ -386,36 +345,11 @@ Local Activation is a local dynamic measure. It is calculated as the number of c
 
 Local Redundancy is also a local dynamic measure, highly complementary to local activation. It is calculated as the number of connections in the selected time period that have been active before that time period began. In the network above, Figure \ref{localActivation1}, if the four time frames represent the full time period, the local redundancy value for the central node would be 0, since there are no prior connections. If the selected time period was from the second to final time frames, inclusive, then the redundancy value for the central node would be 1.
 
-\subsubsection{Further Applications}
-Local activation could have broad applications in other domains where dynamic networks are used. 
-\newline\newline
+%\subsubsection{Further Applications}
+%Local activation could have broad applications in other domains where dynamic networks are used. 
+%\newline\newline
 %In 2002 a study was conducted using a network of business connections to investigate if the degree of redundancy in social networks influenced the success of business start-ups \cite{socRed}. Redundancy here is applied in a static sense, such that "In non‐redundant networks the entrepreneurs’ contacts do not know each other and rarely have the same information". If a dynamic network was used instead, and the local redundancy measure was applied then .... STATIC V DYNAMIC A BIT DIFFICULT HERE BUT I THINK IT COULD BE A GOOD ADDITION?
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%LOCAL MEASURE VISUALISATION.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Local Measure Hoverover}
-\label{sec:localMeasureVis}
-To save screen space and reduce visual complexity, the precise values of a node's local measures given the selected time period are only shown on hover over. For the purposes of this report, the local measures are degree centrality and local volatility. However the implementation is easily extensible, allowing for more local measures to be quickly visualised.
-
-Initially, local volatility was visualised using 'spikes', where more spikes indicated higher local volatility. Other methods were considered, vibration matches with the mental image of volatility but would be too distracting to the eye. Dotted rings with larger diameter indicating higher local volatility were considered but had too much potential for confusing overlap. Colours were originally used but could be misconstrued as relating to the edge colours. 
-However as more local measures were added the spikes made less sense. They were also somewhat difficult to count on smaller nodes.
-
-\begin{center}
-\includegraphics[trim={9cm, 0, 0, 14cm}, clip, width=140mm]{./Figures/finalUI.png}
-\end{center}
-
-Local activation, redundancy, volatility and centrality are all visualised in the same way - as the radius of the node in the network visualisation. The drop down in the bookmarks bar is used to select between them. The values are calculated for each node and the nodes radius is then calculated as the log of double the measures value, plus one. The values are doubled to give more visual separation which is hampered by the log scale. The "+1" is added so that nodes always have a radius to avoid breaking the user's mental map \cite{BLANK}.
-
-To aid the user further, a lighter grey circle of a fixed radius is shown behind each node acting as a ghost. It's radius is calculated given the active local measure as that measures value over the full time frame. This allows users to see how a smaller window of time differs from the full time period. It was considered to use the maximum value that the selected measure ever takes for each given node, however this would require considerable initial computation as all pairs of start and end times would have to be considered for every single node. This solution doesn't work for redundancy as there are no redundant nodes over the full period.
-
-\begin{figure}[h!]
-  \begin{center}
-  \includegraphics[trim={0, 0, 0, 0}, width=70mm]{./Figures/greyCircles.png}
-  \caption{Fixed Ghost Nodes}
-  \label{fig:greyCircles}
-  \end{center}
-\end{figure}
 
 
 
