@@ -64,9 +64,9 @@ Looking next at Diameter, Figure \ref{fig:marieBoucherDiameter}, we see the same
   \end{center}
 \end{figure}
 
-Density, \ref{fig:marieBoucherDensity}, follows the same pattern. Interestingly the density during the flat period is 100\%. Investigating this with the timeline slider we see that this is because there are only ever two nodes connected at a time during this period. 
+Density, Figure \ref{fig:marieBoucherDensity}, follows the same pattern. Interestingly, the density during the flat period is 100\%. Investigating this with the timeline slider we see that this is because there are only ever two nodes connected at a time during this period. 
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \begin{center}
   \includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/marieBoucherNodePairs.png}
   \caption{Marie Boucher Node Pairs}
@@ -74,7 +74,7 @@ Density, \ref{fig:marieBoucherDensity}, follows the same pattern. Interestingly 
   \end{center}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \begin{center}
   \includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/marieBoucherNodes.png}
   \caption{Marie Boucher Nodes}
@@ -91,9 +91,9 @@ We could equally have confirmed this by looking at the number of node pairs, Fig
   \label{fig:marieBoucherGlobalActivation}
   \end{center}
 \end{figure}
-Global activation, Figure \ref{fig:marieBoucherGlobalActivation} increases reasonably linearly for the first period. Notably during the flatter period it does increase slightly at each step confirming that the pairs we investigated in the density section are all different. 
+Global activation, Figure \ref{fig:marieBoucherGlobalActivation}, increases reasonably linearly for the first period. Notably, during the flatter period it does increase slightly at each step confirming that the pairs we investigated in the density section are all different. 
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \begin{center}
   \includegraphics[trim={0 0 0 0}, width=140mm]{./Figures/marieBoucherGlobalRedundancy.png}
   \caption{Marie Boucher Global Redundancy}
@@ -128,7 +128,7 @@ Next, the local measures can be investigated. Applying local volatility to the w
 \captionof{figure}{Marie Boucher - Local Redundancy for a short period}
 \label{fig:marieBoucherLocalRedundancyPeriod1}
 \end{center}   
-Applying local redundancy to the network, Figure \ref{fig:marieBoucherLocalRedundancyPeriod1}, and stepping through it, there are few nodes that particularly stand out as having high redundancy, as expected the central nodes tend to have higher values than the outer nodes but some of the tightly linked nodes have notable redundancies, showing that they are connected a few separate times in the full period.
+Applying local redundancy to the network, Figure \ref{fig:marieBoucherLocalRedundancyPeriod1}, and stepping through it, there are only a few nodes that particularly stand out as having high redundancy. As expected the central nodes tend to have higher values than the outer nodes but some of the tightly linked nodes have notable redundancies, showing that they are connected a few separate times in the full period.
 
 \begin{center}
 \begin{tabular}{cc}
@@ -137,7 +137,7 @@ Applying local redundancy to the network, Figure \ref{fig:marieBoucherLocalRedun
 \captionof{figure}{Marie Boucher - Local Activation for a short period}
 \label{fig:marieBoucherLocalActivationPeriod1}
 \end{center} 
-Switching to activation, Figure \ref{fig:marieBoucherLocalActivationPeriod1}, and we can see many nodes score quite high as we step through the network. The central nodes in particular but also some of the outer nodes.
+After switching to activation, Figure \ref{fig:marieBoucherLocalActivationPeriod1}, we can see many nodes score quite high as we step through the network, particularly the central nodes but also some of the outer nodes.
 
 \section{Scenario 2 Turin Network}
 
@@ -176,7 +176,7 @@ In between each of these jumps is reasonably high volatility, so together these 
   \label{fig:TurinConnectedComponents}
   \end{center}
 \end{figure}
-Looking next at the number of connected components, Figure \ref{fig:TurinConnectedComponents} ,if we observe the network itself and step through it then it is readily apparent that it is made of many small connected components which tend to become active for short periods. Interestingly, what this graph shows - combined with this observation about the network, is that for the majority of the time there is only one active connected component, with only four time frames occurring with two active and one time frame occurring with three active.
+Looking next at the number of connected components, Figure \ref{fig:TurinConnectedComponents}, if we observe the network itself and step through it then it is readily apparent that it is made of many small connected components which tend to become active for short periods. Interestingly, what this graph shows - combined with this observation about the network - is that for the majority of the time there is only one active connected component, with only four time frames occurring with two active and one time frame occurring with three active.
 
 \begin{figure}[h!]
   \begin{center}
@@ -185,7 +185,7 @@ Looking next at the number of connected components, Figure \ref{fig:TurinConnect
   \label{fig:TurinDiameter}
   \end{center}
 \end{figure}
-Diameter, Figure \ref{fig:TurinDiameter}, is equally interesting, there are only two time frames where the diameter is over one, and in both cases that value is two. Combined with what we know about connected components we can see that all of these components are highly connected since the vast majority only have a diameter of one, which is the smallest possible diameter for any network.
+The diameter, shown in Figure \ref{fig:TurinDiameter}, is equally interesting, as there are only two time frames where the diameter is over one, and in both cases that value is two. Combined with what we know about connected components we can see that all of these components are highly connected since the vast majority only have a diameter of one, which is the smallest possible diameter for any network.
     
 \begin{figure}[h!]
   \begin{center}
@@ -221,7 +221,7 @@ Due to the density and what we've observed previously, the number of nodepairs, 
   \end{center}
 \end{figure}
 
-Comparing number of nodes with Global Volatility, Figure \ref{fig:TurinGlobalVolatilityAndNodes}, by dragging the number of nodes graph up such that it is directly below the global volatility graph they can now be easily compared. We can see that the steps of very high volatility identified earlier are explained by the large new connected components appearing during those time frames.
+Comparing the number of nodes with Global Volatility, Figure \ref{fig:TurinGlobalVolatilityAndNodes}, by dragging the number of nodes graph up such that it is directly below the global volatility graph they can now be easily compared. We can see that the steps of very high volatility identified earlier are explained by the large new connected components appearing during those time frames.
    
 \begin{figure}[h!]
   \begin{center}
@@ -276,7 +276,7 @@ Comparing these results from local volatility with the centrality measure - agai
 \captionof{figure}{Turin Local Redundancy - short time period}
 \label{fig:TurinLocalRedundancy1}
 \end{center}
-Switching to local redundancy and selecting a period towards the end of the network's timeline, Figure \ref{fig:TurinLocalRedundancy1}, we can easily spot the components that have been active at some point before that period as they have a redundancy $> 0$. This further complements our findings from the global redundancy measure.
+Switching to local redundancy and selecting a period towards the end of the network's timeline, Figure \ref{fig:TurinLocalRedundancy1}, we can easily spot the components that have been active at some point before that period as they have a redundancy greater than zero. This further complements our findings from the global redundancy measure.
 
 \begin{center}
 \begin{tabular}{cc}
@@ -397,20 +397,18 @@ Of course, the measures are meant to be complementary to the network and not to 
 \label{fig:turinAllGraphs}
 \end{multicols}
 
-Interestingly, When looking at the actual networks themselves, Figure \ref{fig:TurinLocalVolatilityFull} and Figure \ref{fig:marieBoucherFull}, despite the fact that they appear quite different, the global measure graphs, Figures \ref{fig:marieBoucherAllGraphs} and \ref{fig:turinAllGraphs}, seem quite similar at a glance. This is likely because whilst actually stepping through each time frame, the networks behave similarly in that there are usually only a few nodes involved and they tend to be in a single component. The difference, which can be seen in the diameter and density graphs, is that in the Marie Boucher network these components tend to be made up of one central node with the other active nodes mostly only connected to it, but in the Turin network, the nodes tend to be more interconnected.
+Interestingly, when looking at the actual networks themselves, Figure \ref{fig:TurinLocalVolatilityFull} and Figure \ref{fig:marieBoucherFull}, despite the fact that they appear to be quite different, the global measure graphs, Figures \ref{fig:marieBoucherAllGraphs} and \ref{fig:turinAllGraphs}, seem moderately similar at a glance. This is likely because whilst actually stepping through each time frame, the networks behave similarly in that there are usually only a few nodes involved and they tend to be in a single component. The difference, which can be seen in the diameter and density graphs, is that in the Marie Boucher network these components tend to be made up of one central node with the other active nodes mostly only connected to it, but in the Turin network, the nodes tend to be more interconnected.
 
 
 \chapter{Discussion}
 
 In this paper I have presented a measure based approach to dynamic network visualisation. Details of the measures and their implemented visualisation have been provided.
 
-...
-
 \section{Potential further work} 
 Creating visualisations is a highly iterative and experimental process, so naturally many ideas have been produced for improvements that could be made to the system. This section details some of those potential improvements.
 \newline
 
-Automatically highlighting points of interest could be a useful feature, by looking at the "interestingness" of each timeframe. These points of interest would be timeframes where many of the global measures differ significantly from their average and could be considered outliers. The most significant, say, three of these timeframes could then be shown on the timeline. One possible way to achieve this that I considered would be using Tukey fences, which can be used to spot outliers. David C. Hoaglin in John W. Tukey and Data Analysis \cite{jwtada} states that Exploratory Data Analysis\cite{eda} uses "fences" to flag possible outliers. These are based on the "hinges," $H_L$ and $H_U$, which are approximate quartiles of the batch. He goes on to say that the basic idea is to calculate the H-spread, $d_H = H_U - H_L$, and lay off a multiple of it below $H_L$ and above $H_U$: 
+Automatically highlighting points of interest could be a useful feature, by looking at the "interestingness" of each timeframe. These points of interest would be timeframes where many of the global measures differ significantly from their average and could be considered outliers. The most significant, say, three of these timeframes could then be shown on the timeline. One possible way to achieve this that I considered would be using Tukey fences, which can be used to spot outliers. David C. Hoaglin in John W. Tukey and Data Analysis \cite{jwtada} states that Exploratory Data Analysis \cite{eda} uses "fences" to flag possible outliers. These are based on the "hinges," $H_L$ and $H_U$, which are approximate quartiles of the batch. He goes on to say that the basic idea is to calculate the H-spread, $d_H = H_U - H_L$, and lay off a multiple of it below $H_L$ and above $H_U$: 
 \begin{equation}
  H_L-kd_H \, \, and \, \, H_U + kd_H.
 \end{equation}
@@ -436,7 +434,9 @@ Another improvement mentioned during the feedback meeting (and briefly considere
 
 
 \section{Evaluation of work completed} 
-The meeting with network scientists validated the approach and the system works well in the described usage scenarios. I'm confident that a measure based approach works well as a dynamic network visualisation when used alongside a nodelink diagram. More specifically, most measures appear to be useful in their own right although there can be occasional overlap in the information they provide. The number of connected components measure could perhaps be replaced with a cluster based measure, which would likely achieve a similar effect while also capturing the clusters. The basicv global measures: number of nodepairs and number of nodes tend to overlap in terms of information provided since they're highly correlated. However having one without the other seems somewhat incomplete. Density and Diameter both provide useful information and I found them to be good indicators of the network structure. Global activation, redundancy and volatility were the more experimental and dynamic measures. I found that the three of them have a strong synergy when observed together since they're specifically dynamic. Perhaps more global dynamic measures could be added but I don't think any of those three should be removed. Local measures are slightly more situational, volatility works well in showing specifically interesting nodes. Activation and redundancy again work well for highlighting new or old relationships. I believe there is certainly scope for more local measures, particularly dynamic measures.
+The number of connected components measure could perhaps be replaced with a cluster based measure, which would likely achieve a similar effect while also capturing the clusters. The basic global measures - number of nodepairs and number of nodes - tend to overlap in terms of information provided since they're highly correlated. However having one without the other seems somewhat incomplete. Density and Diameter both provide useful information and I found them to be good indicators of the network structure. Global activation, redundancy and volatility were the more experimental and dynamic measures. I found that the three of them have a strong synergy when observed together since they're specifically dynamic. Perhaps more global dynamic measures could be added but I don't think any of those three should be removed. Local measures are slightly more situational, volatility works well in showing specifically interesting nodes. Activation and redundancy again work well for highlighting new or old relationships. I believe there is certainly scope for more local measures, particularly dynamic measures.
 
 If this project were to be continued further, I would recommend first attempting to source some feedback on the existing implementation to better guide any further changes. I feel that enough measures have been implemented, and that the user interface is intuitive enough to properly demonstrate the measure based approach, providing better feedback. I would recommend getting familiar with the codebase, particularly understanding how the iframes interact with each other. Both the local and global measure implementations are readily extensible, I've found that many measures share data structures and methods making new measures even easier to implement.
 I would also recommend bearing scalability in mind when adding any new measures. Working within the browser is limiting, so data structures and algorithms need to be well thought out to run smoothly - particularly for local measures as they are constantly recalculated as the time period is adjusted.
+
+The meeting with network scientists validated the approach and the system works well in the described usage scenarios. I'm confident that a measure based approach works well as a dynamic network visualisation when used alongside a nodelink diagram. More specifically, most measures appear to be useful in their own right although there can be occasional overlap in the information they provide. 

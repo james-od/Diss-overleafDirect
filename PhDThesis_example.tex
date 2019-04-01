@@ -106,8 +106,6 @@
 %\bibliographystyle{Classes/RoboticsBiblio}    % bibliography style
 \bibliographystyle{ieeetr}
 \renewcommand{\bibname}{References}           % change default name Bibliography to References
-\bibliography{References/references}          % References file
-\addcontentsline{toc}{chapter}{References}    % add References to contents page
 %\addcontentsline{toc}{section}{References}
 \nocite{*}
 \begin{appendices}
@@ -128,7 +126,7 @@ $local\ volatility(B) = std([1,0,0,0])$
 $local\ volatility(B) = 0.43$
 \end{center}
 
-In this network, nodepair 1 is active between node A and node B for three time frames, in the fourth timeframe nodepair 2 is active instead. The volatility values for nodes A and B are calculated. We can observe that the local volatility of A is higher than B, as would be expected, but lower than the previous example. This again is intuitive because A is makes fewer connections than the previous example.
+In this network, nodepair 1 is active between node A and node B for three time frames, in the fourth timeframe nodepair 2 is active instead. The volatility values for nodes A and B are calculated. We can observe that the local volatility of A is higher than B, as would be expected, but lower than the previous example. This again is intuitive because A makes fewer connections than the previous example.
 \begin{center}
 \includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix2.png}
 $local\ volatility = std([1,1,1,0]) + std([0,0,0,1])$
@@ -140,7 +138,7 @@ $local\ volatility(B) = std([1,1,1,0])$
 $local\ volatility(B) = 0.43$
 \end{center}
 
-In this network node A always has two active nodepairs, these vary in each tiemframe. The volatility values for nodes A and B are calculated. We can observe that the local volatility of A is much higher than B, as would be expected, and even higher than the first example. This again is intuitive because A makes many more connections with all appearing twice. B is slightly higher because it's nodepair is active twice.
+In this network node A always has two active nodepairs, these vary in each timeframe. The volatility values for nodes A and B are calculated. We can observe that the local volatility of A is much higher than B, as would be expected, and even higher than the first example. This again is intuitive because A makes many more connections with all of them appearing twice. B is slightly higher because it's nodepair is active twice.
 \begin{center}
 \includegraphics[trim={0 15cm 0 0}, width=140mm]{./Figures/volatilityAppendix3.png}
 $local\ volatility = std([1,0,1,0]) + std([0,1,1,1]) + std([1,0,0,1]) + std([0,1,0,1])$
@@ -192,4 +190,8 @@ $local\ volatility(B) = 0$
 %\end{center}
 
 \end{appendices}
+
+\bibliography{References/references}          % References file
+\addcontentsline{toc}{chapter}{References}    % add References to contents page
+
 \end{document}
